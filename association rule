@@ -1,7 +1,7 @@
 def support(items):
     # Count the frequency of each character
     char_count = {}
-    print("-----------Iteration-----------------")
+   
     
     for item in items:
         for char in item:
@@ -22,6 +22,7 @@ def support(items):
     
 def association(char_count, items):
     # Generate pairs from the char_count dictionary
+    print("---------------Iteration---------------------")
     pairs = []
     for i in char_count:
         for j in char_count:
@@ -63,12 +64,14 @@ def newsupport(items, pairs):
         
 
 # Sample data
-tid = [1, 2, 3, 4]
+
 items = ['ACD', 'BCE', 'ABCE', 'BE']
+
+
 
 print("Database:")
 print("tid | items")
 for i in range(4):
-    print(tid[i], "|", items[i])
+    print(i, "|", items[i])
 
 support(items)
