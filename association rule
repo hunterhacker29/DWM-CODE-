@@ -1,0 +1,74 @@
+def support(items):
+    # Count the frequency of each character
+    char_count = {}
+    print("-----------Iteration-----------------")
+    
+    for item in items:
+        for char in item:
+            if char in char_count:
+                char_count[char] += 1  # Increment count if char already exists
+            else:
+                char_count[char] = 1  # Initialize count if char doesn't exist
+    
+    # Filter out characters that appear only once
+    for char in list(char_count.keys()):  
+        if char_count[char] <= 1:
+            del char_count[char]  
+    
+    print(char_count)
+     
+    # Generate and print pairs
+    association(char_count, items)
+    
+def association(char_count, items):
+    # Generate pairs from the char_count dictionary
+    pairs = []
+    for i in char_count:
+        for j in char_count:
+            if i < j:  
+                pair = i + j 
+                pairs.append(pair)
+            
+    print(pairs)
+    newsupport(items, pairs)
+    
+    return pairs
+
+def newsupport(items, pairs):
+    # Initialize the dictionary to store pair frequencies
+    items2 = {p: 0 for p in pairs}
+
+    # Iterate through each item in the items list
+    for item in items:
+        # Generate all possible pairs from the item
+        item_pairs = [item[i:i+2] for i in range(len(item) - 1)]
+        
+        # Count occurrences of each pair
+        for p in item_pairs:
+            if p in items2:
+                items2[p] += 1
+    
+    if (len(items2)==1):
+        print("\n--------------Final set is------------- ")
+        print(items2)
+        
+    else:
+        # Print the frequency of each pair
+        print("Item set and support")
+        print (items2)
+        print("After removing minimum support")
+        items2 = {p: count for p, count in items2.items() if count > 1}
+        print(items2)
+        association (items2,items)
+        
+
+# Sample data
+tid = [1, 2, 3, 4]
+items = ['ACD', 'BCE', 'ABCE', 'BE']
+
+print("Database:")
+print("tid | items")
+for i in range(4):
+    print(tid[i], "|", items[i])
+
+support(items)
