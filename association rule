@@ -20,6 +20,7 @@ def support(items):
     # Generate and print pairs
     association(char_count, items)
     
+# ASSICIATIVE RULE GROUPING
 def association(char_count, items):
     # Generate pairs from the char_count dictionary
     print("---------------Iteration---------------------")
@@ -30,11 +31,11 @@ def association(char_count, items):
                 pair = i + j 
                 pairs.append(pair)
             
-    print(pairs)
+    
+        
     newsupport(items, pairs)
     
-    return pairs
-
+# calculating new support pairs 
 def newsupport(items, pairs):
     # Initialize the dictionary to store pair frequencies
     items2 = {p: 0 for p in pairs}
@@ -63,15 +64,21 @@ def newsupport(items, pairs):
         association (items2,items)
         
 
-# Sample data
+# Get the number of items from the user
+n = int(input("Enter number of items: "))
 
-items = ['ACD', 'BCE', 'ABCE', 'BE']
+# Initialize an empty list to store items
+items = []
 
+# Collect items from the user
+for i in range(n):
+    item = input(f"Enter the Item {i+1}: ")
+    items.append(item)
 
-
+# Print the database
 print("Database:")
 print("tid | items")
-for i in range(4):
-    print(i, "|", items[i])
-
+for i in range(n):
+    print(f"{i+1} | {items[i]}")
+    
 support(items)
